@@ -1,2 +1,6 @@
-shared/*
-!shared/.gitkeep
+.venv/
+__pycache__/
+*.py[cod]
+shared_files/*
+!shared_files/.gitkeep
+shared_pad.txt

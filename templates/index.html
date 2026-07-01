@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#10120f">
+    <title>QuickLAN Share</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span class="brand-mark">Q</span>
+        <span>QuickLAN</span>
+      </a>
+      <div class="connection">
+        <span id="statusDot" class="status-dot"></span>
+        <span id="connectionText">Connecting</span>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="panel files-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Send + receive</p>
+            <h1>Shared files</h1>
+          </div>
+          <button id="refreshButton" class="icon-button" type="button" aria-label="Refresh files" title="Refresh files">
+            ↻
+          </button>
+        </div>
+
+        <form id="uploadForm">
+          <label id="dropZone" class="drop-zone">
+            <input id="fileInput" type="file" name="files" multiple>
+            <span class="upload-icon">↑</span>
+            <strong>Drop files here</strong>
+            <span>or click to choose from this device</span>
+          </label>
+          <div id="uploadProgress" class="upload-progress" hidden>
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+        </form>
+
+        <div class="list-header">
+          <span>Available to everyone</span>
+          <span id="fileCount">0 files</span>
+        </div>
+        <div id="fileList" class="file-list" aria-live="polite">
+          <div class="empty-state">Looking for shared files...</div>
+        </div>
+      </section>
+
+      <section class="panel pad-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Live across the LAN</p>
+            <h2>Text share pad</h2>
+          </div>
+          <span id="saveStatus" class="save-status">Synced</span>
+        </div>
+        <textarea id="sharedPad" maxlength="200000" spellcheck="true" placeholder="Type or paste anything here. Everyone connected sees it live..."></textarea>
+        <footer class="pad-footer">
+          <span id="characterCount">0 characters</span>
+          <button id="copyButton" class="text-button" type="button">Copy all</button>
+        </footer>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status"></div>
+
+    <script src="{{ url_for('static', filename='vendor/socket.io.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
